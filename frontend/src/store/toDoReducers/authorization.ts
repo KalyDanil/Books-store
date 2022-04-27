@@ -40,13 +40,14 @@ export const authorizationByTokenRequest = createAsyncThunk
   async (params: object, { dispatch, getState }) => {
     try {
       const res: User = await api.get('http://localhost:4000/auth/authorizationByToken', {params});
-      dispatch(authorizationAction(res));
+      if(res.avatar !== null) {
+        dispatch(authorizationAction(res));
+      }
       return res
     } catch(err: any) {
       console.log(err)
       return err
     }
-    
   }
 );
 
