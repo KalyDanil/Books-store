@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSearchParams } from "react-router-dom";
-import { AppDispatch } from "../../../store";
-import { selectFilterButtonAction } from "../../../store/reducers/bookReducer/thunks";
-import { sortByConstants } from "../../../utils/constants";
-import { useAppSelector } from "../../../utils/hooks/useAppSelector";
-import { SortByFilterStyle } from "./SortByFilter.styled";
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { selectFilterButtonAction } from '../../../store/reducers/bookReducer/thunks';
+import { sortByConstants } from '../../../utils/constants';
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch';
+import { useAppSelector } from '../../../utils/hooks/useAppSelector';
+import { SortByFilterStyle } from './SortByFilter.styled';
 
 const SortByFilter: React.FC = () => {
   const books = useAppSelector((state) => state.books);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setsortBy] = useState('name');
 
@@ -22,14 +21,14 @@ const SortByFilter: React.FC = () => {
   const editSort = () => {
     if (books.selectedFilterButton === 'sortBy') {
       dispatch(selectFilterButtonAction(''));
-      return
+      return;
     }
     dispatch(selectFilterButtonAction('sortBy'));
-  }
+  };
 
   const editNothing = () => {
     dispatch(selectFilterButtonAction(''));
-  }
+  };
 
   const selectSortBy = (value: string) => {
     const arr = value.toLowerCase().split(' ');
@@ -38,7 +37,7 @@ const SortByFilter: React.FC = () => {
     searchParams.delete('sortBy');
     searchParams.append('sortBy', str);
     setSearchParams(searchParams);
-  }
+  };
 
   return (
     <SortByFilterStyle selectedFilterButton={books.selectedFilterButton} sortBy={sortBy}>
@@ -51,6 +50,6 @@ const SortByFilter: React.FC = () => {
       </div>
     </SortByFilterStyle>
   );
-}
+};
 
 export default SortByFilter;

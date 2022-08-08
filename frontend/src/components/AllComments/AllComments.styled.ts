@@ -17,7 +17,7 @@ export const AllCommentsStyle = styled.div<{ isLoggedIn: boolean }>`
     }
 
 .makingComments {
-    display: ${props => props.isLoggedIn ? 'flex' : 'none'};
+    display: ${(props) => (props.isLoggedIn ? 'flex' : 'none')};
     flex-direction: column;
     width: 57.6%;
     @media screen and (min-width: 833px) and (max-width:1439px) {
@@ -85,4 +85,4 @@ export const AllCommentsStyle = styled.div<{ isLoggedIn: boolean }>`
         line-height: 18px;
     }
 }
-`
+`;

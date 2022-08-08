@@ -1,16 +1,15 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store";
-import { editPasswordRequest, editRequest } from "../../../store/reducers/userReducer/thunks";
-import { useAppSelector } from "../../../utils/hooks/useAppSelector";
-import { PersonalInformationStyle } from "./PersonalInformation.styled";
+import { useState } from 'react';
+import { editPasswordRequest, editRequest } from '../../../store/reducers/userReducer/thunks';
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch';
+import { useAppSelector } from '../../../utils/hooks/useAppSelector';
+import { DivStyle } from './PersonalInformation.styled';
 
 const PersonalInformation: React.FC = () => {
   const user = useAppSelector((state) => state.user);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const [fullNameEditing, setFullNameEditing] = useState('');
   const [emailEditing, setEmailEditing] = useState('');
-  const [odlPassword, setPassword] = useState('');
+  const [oldPassword, setPassword] = useState('');
   const [newPassword, setnewPassword] = useState('');
   const [newPasswordReplay, setnewPasswordReplay] = useState('');
   const [newPasswordIsMaking, setnewPasswordIsMaking] = useState(false);
@@ -18,73 +17,60 @@ const PersonalInformation: React.FC = () => {
 
   const emailInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmailEditing(e.target.value);
-  }
+  };
 
   const fullNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFullNameEditing(e.target.value);
-  }
+  };
 
   const startToEditInformation = () => {
     setinformationIsEditing(!informationIsEditing);
     setFullNameEditing(user.fullName);
     setEmailEditing(user.email);
-  }
+  };
 
   const ConfirmInformationChanges = async () => {
     const newInformation = {
       fullName: fullNameEditing,
       email: emailEditing,
-    }
-    const res = await dispatch(editRequest(newInformation));
-    if (res.payload.response.data !== 'email must be a valid email') {
-      setinformationIsEditing(false);
-      window.location.reload();
-      return;
-    } else { alert(res.payload.response.data) }
-  }
+    };
+    dispatch(editRequest(newInformation));
+  };
 
   const oldPasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value)
-  }
+    setPassword(e.target.value);
+  };
 
   const newPasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setnewPassword(e.target.value)
-  }
+    setnewPassword(e.target.value);
+  };
 
   const newPasswordReplayInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setnewPasswordReplay(e.target.value)
-  }
+    setnewPasswordReplay(e.target.value);
+  };
 
   const startToChangePassword = () => {
     setnewPasswordIsMaking(!newPasswordIsMaking);
-  }
+  };
 
   const ConfirmNewPassword = async () => {
     if (newPassword !== newPasswordReplay) {
       setnewPassword('');
       setnewPasswordReplay('');
-      return alert("Passwords are not the same")
+      return alert('Passwords are not the same');
     }
 
     const passwordBody = {
-      newPassword: newPassword,
-      oldPassword: odlPassword,
-      token: localStorage.getItem('token')
-    }
+      newPassword,
+      oldPassword,
+      token: localStorage.getItem('token'),
+    };
 
-    const res = await dispatch(editPasswordRequest(passwordBody));
-    alert(res.payload);
-    setnewPassword('');
-    setnewPasswordReplay('');
-    if (res.payload === 'Password are updated.') {
-      setPassword('');
-      setnewPasswordIsMaking(false);
-      window.location.reload();
-    }
-  }
+    dispatch(editPasswordRequest(passwordBody));
+  };
 
   return (
-    <PersonalInformationStyle newPasswordIsMaking={newPasswordIsMaking} informationIsEditing={informationIsEditing}>
+    <DivStyle newPasswordIsMaking={newPasswordIsMaking} informationIsEditing={informationIsEditing}>
       <div className='personalInformation__header'>
         <h1>Personal information</h1>
         <span onClick={startToEditInformation}>Change information</span>
@@ -123,7 +109,7 @@ const PersonalInformation: React.FC = () => {
       <div className='personalInformation__oldPassword'>
         <span className='personalInformation__password-text'>Old password</span>
         <img className='personalInformation__imgHide' src='./assets/image/hide.svg' alt='hide' />
-        <input className='personalInformation__inputText' type='password' onChange={oldPasswordInput} value={odlPassword} />
+        <input className='personalInformation__inputText' type='password' onChange={oldPasswordInput} value={oldPassword} />
       </div>
       <div className='personalInformation__newPassword'>
         <img className='personalInformation__imgHide' src='./assets/image/hide.svg' alt='hide' />
@@ -136,8 +122,8 @@ const PersonalInformation: React.FC = () => {
         <span>Repeat your password without errors</span>
       </div>
       <input className='personalInformation__passwordButton' type='button' onClick={ConfirmNewPassword} value='Confirm' />
-    </PersonalInformationStyle>
+    </DivStyle>
   );
-}
+};
 
 export default PersonalInformation;

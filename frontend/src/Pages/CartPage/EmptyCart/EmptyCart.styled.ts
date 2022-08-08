@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const EmptyCartStyle = styled.div<{cartIsEmpty: boolean}>`
-    display: ${props => props.cartIsEmpty? 'flex' : 'none'};
+    display: ${(props) => (props.cartIsEmpty ? 'flex' : 'none')};
     flex-direction: row;
     width: 70%;
     margin-left: auto;
@@ -85,4 +85,4 @@ export const EmptyCartStyle = styled.div<{cartIsEmpty: boolean}>`
             }
         }
     }
-`
+`;

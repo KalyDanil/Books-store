@@ -1,7 +1,7 @@
-import { useAppSelector } from "../../../utils/hooks/useAppSelector";
-import BookDescriptionAndButton from "../BookDescriptionAndButton/BookDescriptionAndButton";
-import BookStars from "../BookStars/BookStars";
-import { BookInformationStyle } from "./BookInformation.styled";
+import { useAppSelector } from '../../../utils/hooks/useAppSelector';
+import BookDescriptionAndButton from '../BookDescriptionAndButton/BookDescriptionAndButton';
+import BookStars from '../BookStars/BookStars';
+import { BookInformationStyle } from './BookInformation.styled';
 
 const BookInformation: React.FC = () => {
   const books = useAppSelector((state) => state.books);
@@ -14,6 +14,6 @@ const BookInformation: React.FC = () => {
       <BookDescriptionAndButton />
     </BookInformationStyle>
   );
-}
+};
 
 export default BookInformation;

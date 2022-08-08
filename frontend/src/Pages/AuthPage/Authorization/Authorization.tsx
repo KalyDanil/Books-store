@@ -1,40 +1,32 @@
-import '../../../App.css';
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../store/index';
 import { authorizationRequest, nameChangerAction } from '../../../store/reducers/userReducer/thunks';
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch';
 import { AuthorizationForm } from './Authorization.styled';
 
 const Authorization: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   useEffect(() => {
     dispatch(nameChangerAction('SingUp'));
-
   }, [dispatch]);
 
   const authorization = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const currentUser = { email: email, password: password };
-    await dispatch(authorizationRequest(currentUser));
-
-    if (localStorage.getItem('token') !== 'err') {
-      window.location.href = '/main?page=1';
-    } else { alert('Wrong password or email.') }
-
+    const currentUser = { email, password };
+    dispatch(authorizationRequest(currentUser));
     setEmail('');
     setPassword('');
   };
 
   const emailInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-  }
+  };
 
   const passwordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-  }
+  };
 
   return (
     <AuthorizationForm onSubmit={authorization}>
@@ -47,6 +39,6 @@ const Authorization: React.FC = () => {
       <img className='authPicture' src='./assets/image/registrationPicture.svg' alt='auth picture' />
     </AuthorizationForm>
   );
-}
+};
 
 export default Authorization;

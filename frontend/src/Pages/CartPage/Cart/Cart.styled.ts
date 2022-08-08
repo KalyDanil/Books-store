@@ -13,7 +13,7 @@ export const CartStyle = styled.div<{cartIsEmpty: boolean}>`
     }
 
 .cartBook {
-    display: ${props => props.cartIsEmpty? 'none' : 'flex'};
+    display: ${(props) => (props.cartIsEmpty ? 'none' : 'flex')};
     position: relative;
     flex-direction: row;
     margin-top: 70px;
@@ -124,7 +124,7 @@ export const CartStyle = styled.div<{cartIsEmpty: boolean}>`
 }
 
 .total {
-    display: ${props => props.cartIsEmpty? 'none' : ''};
+    display: ${(props) => (props.cartIsEmpty ? 'none' : '')};
     margin-top: 50px;
     h1 {
         @media screen and (min-width: 833px) and (max-width:1439px) {
@@ -182,4 +182,4 @@ export const CartStyle = styled.div<{cartIsEmpty: boolean}>`
         margin-left: 0px;
     }
 }
-`
+`;

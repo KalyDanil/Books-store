@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const BookStarsStyle = styled.div<{isLoggedIn: boolean}>`
     display: flex;
@@ -58,7 +58,7 @@ export const BookStarsStyle = styled.div<{isLoggedIn: boolean}>`
 }
 
 .starsToRate {
-    display: ${props => props.isLoggedIn? 'flex' : 'none'};
+    display: ${(props) => (props.isLoggedIn ? 'flex' : 'none')};
     justify-content: space-between;
     margin-right: 41px;
     width: 208px;
@@ -69,7 +69,7 @@ export const BookStarsStyle = styled.div<{isLoggedIn: boolean}>`
 }
 
 .defaultStarsToRate {
-    display: ${props => props.isLoggedIn? 'none' : 'flex'};
+    display: ${(props) => (props.isLoggedIn ? 'none' : 'flex')};
     justify-content: space-between;
     margin-right: 41px;
     width: 208px;
@@ -102,4 +102,4 @@ export const BookStarsStyle = styled.div<{isLoggedIn: boolean}>`
     }
     
 }
-`
+`;

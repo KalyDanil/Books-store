@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Banner = styled.div<{isLoggedIn: boolean}>`
-    display: ${props => props.isLoggedIn? 'none' : ''};
+    display: ${(props) => (props.isLoggedIn ? 'none' : '')};
     position: relative;
     margin-top: 97px;
     margin-left: auto;

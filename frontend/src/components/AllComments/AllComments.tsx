@@ -1,16 +1,15 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import Comment from "../Comment/Comment";
-import { AppDispatch } from "../../store";
-import { makeCommentRequest } from "../../store/reducers/bookReducer/thunks";
-import { useAppSelector } from "../../utils/hooks/useAppSelector";
-import { AllCommentsStyle } from "./AllComments.styled";
+import { useState } from 'react';
+import Comment from '../Comment/Comment';
+import { makeCommentRequest } from '../../store/reducers/bookReducer/thunks';
+import { useAppSelector } from '../../utils/hooks/useAppSelector';
+import { AllCommentsStyle } from './AllComments.styled';
+import { useAppDispatch } from '../../utils/hooks/useAppDispatch';
 
 const AllComments: React.FC = () => {
   const books = useAppSelector((state) => state.books);
   const user = useAppSelector((state) => state.user);
   const [newComment, setNewComment] = useState('');
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const commentsArr = (books.comments).map((item, index) => {
     return (<Comment comment={item} key={index} />);
   });
@@ -21,13 +20,13 @@ const AllComments: React.FC = () => {
       bookId: books.selectedBook.id,
       comment: newComment,
       commentDate: new Date(),
-    }
+    };
     await dispatch(makeCommentRequest(body));
-  }
+  };
 
   const inputNewComment = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewComment(e.target.value);
-  }
+  };
 
   return (
     <AllCommentsStyle isLoggedIn={user.tokenIsValid}>
@@ -39,6 +38,6 @@ const AllComments: React.FC = () => {
       </form>
     </AllCommentsStyle>
   );
-}
+};
 
 export default AllComments;

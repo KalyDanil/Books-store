@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const GenreStyleContainer  = styled.li`
+export const GenreStyleContainer = styled.li`
     position: relative;
     padding-bottom: 10px;
     input {
@@ -31,4 +31,4 @@ export const GenreStyleContainer  = styled.li`
 .select-genre__checkbox:checked::after {
     background-image: url(./assets/image/checked.svg);
   }
-`
+`;

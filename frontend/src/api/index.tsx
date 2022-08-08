@@ -1,19 +1,20 @@
 import axios from 'axios';
 
-export const api = axios.create();
+export const api = axios.create({
+  baseURL: 'http://localhost:4000/',
+});
 
 api.interceptors.request.use(
-    (config) => {
-        config.headers ={
-            'Authorization': `token ${localStorage.getItem('token')}`
-        };
-        config.baseURL ='http://localhost:4000/';
-        return config;
-    }
- );
+  (config) => {
+    config.headers = {
+      Authorization: `token ${localStorage.getItem('token')}`,
+    };
+    return config;
+  },
+);
 
 api.interceptors.response.use(
-    (response) => {
-        return response.data;
-    }
+  (response) => {
+    return response.data;
+  },
 );

@@ -1,10 +1,10 @@
-import { useAppSelector } from "../../utils/hooks/useAppSelector";
-import Book from "../../components/Book/Book";
-import { RecommendationsStyle } from "./Recommendations.styled";
+import { useAppSelector } from '../../utils/hooks/useAppSelector';
+import Book from '../../components/Book/Book';
+import { RecommendationsStyle } from './Recommendations.styled';
 
 const Recommendations: React.FC = () => {
   const books = useAppSelector((state) => state.books);
-  const booksArr = (books.books).map((item, index) => {
+  const booksArr = (books.books).map((item) => {
     return (<Book book={item} key={item.id} />);
   });
 
@@ -14,6 +14,6 @@ const Recommendations: React.FC = () => {
       {booksArr}
     </RecommendationsStyle>
   );
-}
+};
 
 export default Recommendations;

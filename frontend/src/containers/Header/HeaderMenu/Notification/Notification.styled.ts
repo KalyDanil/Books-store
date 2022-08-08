@@ -22,7 +22,7 @@ export const OpenButton = styled.div`
     width: 30px;
     height: auto;
   }
-`
+`;
 
 export const CloseButton = styled.button`
   background: #344966;
@@ -33,4 +33,4 @@ export const CloseButton = styled.button`
   font-size: 20px;
   line-height: 30px;
   color: #F0F4EF;
-`
+`;

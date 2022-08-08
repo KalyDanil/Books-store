@@ -2,7 +2,6 @@ import { Profile } from './Profile.styled';
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar';
 import PersonalInformation from '../PersonalInformation/PersonalInformation';
 
-
 const ProfilePage: React.FC = () => {
   return (
     <Profile>
@@ -10,6 +9,6 @@ const ProfilePage: React.FC = () => {
       <PersonalInformation />
     </Profile>
   );
-}
+};
 
 export default ProfilePage;

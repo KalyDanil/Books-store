@@ -27,4 +27,4 @@ export const BookCoverStyle = styled.div`
         left: 65%;
     }
 }
-`
+`;

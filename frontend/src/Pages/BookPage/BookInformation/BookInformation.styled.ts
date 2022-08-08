@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const BookInformationStyle = styled.div`
     width: 43.7%;
@@ -31,4 +31,4 @@ export const BookInformationStyle = styled.div`
         line-height: 18px;
     }
 }
-`
+`;

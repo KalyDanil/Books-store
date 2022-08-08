@@ -5,7 +5,7 @@ export const SortByFilterStyle = styled.div<{selectedFilterButton: string, sortB
     width: 31%;
     z-index: 2;
     ::after {
-        transform: ${props => props.selectedFilterButton === 'sortBy'? 'rotate(90deg)' : ''};
+        transform: ${(props) => (props.selectedFilterButton === 'sortBy' ? 'rotate(90deg)' : '')};
         z-index: -1;
         content: "";
         position: absolute;
@@ -42,7 +42,7 @@ export const SortByFilterStyle = styled.div<{selectedFilterButton: string, sortB
 }
 
 .select-sortBy__ul{
-    display: ${props => props.selectedFilterButton === 'sortBy'? 'flex' : 'none'};
+    display: ${(props) => (props.selectedFilterButton === 'sortBy' ? 'flex' : 'none')};
     flex-direction: column;
     position: absolute;
     width: 100%;
@@ -72,7 +72,7 @@ export const SortByFilterStyle = styled.div<{selectedFilterButton: string, sortB
         letter-spacing: 0.75px;
     }
 }
-#${props => props.sortBy} {
+#${(props) => props.sortBy} {
     color: #344966;
 }
 `;

@@ -15,4 +15,4 @@ export const BookBlockStyle = styled.div`
         width: 90.6%;
         margin-top: 110px;   
     }
-`
+`;

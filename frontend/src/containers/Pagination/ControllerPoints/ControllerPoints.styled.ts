@@ -13,7 +13,7 @@ export const ControllerPointStyle = styled.div<{page:string}>`
         height: 13px;
     }
     
-#p${props => props.page} {
+#p${(props) => props.page} {
     background-color: black;
 }
 `;

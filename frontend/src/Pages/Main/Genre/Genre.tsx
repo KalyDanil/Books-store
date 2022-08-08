@@ -1,12 +1,12 @@
-import { GenreStyleContainer } from './Genre.styled';
-import { useDispatch } from 'react-redux';
-import { addGenreAction, removeGenreAction } from '../../../store/reducers/bookReducer/thunks';
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { IGenre } from '../../../utils/types';
+import { GenreStyleContainer } from './Genre.styled';
+import { addGenreAction, removeGenreAction } from '../../../store/reducers/bookReducer/thunks';
+import { IGenre } from '../../../utils/types/book';
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch';
 
 const Genre: React.FC<IGenre> = ({ genre, id }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const [checked, setChecked] = useState(false);
   const genreArr = searchParams.getAll('genre');
@@ -17,7 +17,7 @@ const Genre: React.FC<IGenre> = ({ genre, id }) => {
     }
   }, []);
 
-  const addGenre: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  const addGenre: React.ChangeEventHandler<HTMLInputElement> = () => {
     if (!checked) {
       dispatch(addGenreAction(genre));
       setChecked(true);
@@ -29,15 +29,14 @@ const Genre: React.FC<IGenre> = ({ genre, id }) => {
       const index = genreArr.indexOf(id.toString());
       genreArr.splice(index, 1);
       searchParams.delete('genre');
-      for (let genre of genreArr) {
-        searchParams.append('genre', genre)
+      for (const genre of genreArr) {
+        searchParams.append('genre', genre);
       }
       setChecked(false);
     }
 
-    setSearchParams(searchParams)
-
-  }
+    setSearchParams(searchParams);
+  };
 
   return (
     <GenreStyleContainer>
@@ -45,6 +44,6 @@ const Genre: React.FC<IGenre> = ({ genre, id }) => {
       <span>{genre}</span>
     </GenreStyleContainer>
   );
-}
+};
 
 export default Genre;

@@ -5,7 +5,7 @@ export const GenreFilterStyle = styled.div<{selectedFilterButton: string}>`
     width: 31%;
     z-index: 4;
     ::after {
-        transform: ${props => props.selectedFilterButton === 'genre'? 'rotate(90deg)' : ''};
+        transform: ${(props) => (props.selectedFilterButton === 'genre' ? 'rotate(90deg)' : '')};
         z-index: -1;
         content: "";
         position: absolute;
@@ -32,7 +32,7 @@ export const GenreFilterStyle = styled.div<{selectedFilterButton: string}>`
 }
 
 .select-genre__ul {
-        display: ${props => props.selectedFilterButton === 'genre'? '' : 'none'};
+        display: ${(props) => (props.selectedFilterButton === 'genre' ? '' : 'none')};
         position: absolute;
         color: #344966;
         width: 100%;

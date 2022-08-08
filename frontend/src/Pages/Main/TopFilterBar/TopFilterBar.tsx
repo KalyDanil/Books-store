@@ -1,10 +1,9 @@
-import { TopFilterBarStyle } from "./TopFilterBar.styled";
-import GenreFilter from "../GenreFilter/GenreFilter";
-import PriceFilter from "../PriceFilter/PriceFilter";
-import SortByFilter from "../SortByFilter/SortByFilter";
+import { TopFilterBarStyle } from './TopFilterBar.styled';
+import GenreFilter from '../GenreFilter/GenreFilter';
+import PriceFilter from '../PriceFilter/PriceFilter';
+import SortByFilter from '../SortByFilter/SortByFilter';
 
 const TopFilterBar: React.FC = () => {
-
   return (
     <TopFilterBarStyle>
       <div className='catalog__header'>
@@ -17,6 +16,6 @@ const TopFilterBar: React.FC = () => {
       </div>
     </TopFilterBarStyle>
   );
-}
+};
 
 export default TopFilterBar;

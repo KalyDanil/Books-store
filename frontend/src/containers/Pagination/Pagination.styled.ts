@@ -9,7 +9,7 @@ margin-right: auto;
 height: 24px;
 margin-top: 80px;
 img {
-    display: ${props => props.pageCount === 0? 'none' : ''};
+    display: ${(props) => (props.pageCount === 0 ? 'none' : '')};
 }
 @media screen and (min-width: 833px) and (max-width:1439px) {
     width: 33.3%;

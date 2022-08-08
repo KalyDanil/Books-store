@@ -1,15 +1,14 @@
-import { CommentStyle } from './Comment.styled';
 import { useState, useEffect } from 'react';
-import { IComments } from '../../utils/types';
+import { CommentStyle } from './Comment.styled';
+import { IComments } from '../../utils/types/userBooks';
 
 const Comment: React.FC<IComments> = ({ comment }) => {
-  const dayjs = require('dayjs');
+  const dayjs = require('dayjs'); // eslint-disable-line
   const [timestampValue, setTimestampValue] = useState(0);
   const [timestampName, setTimestampName] = useState('');
-  let timeAgo = Math.round((dayjs() - dayjs(comment.createdAt)) / 1000);
-
+  const timeAgo = Math.round((dayjs() - dayjs(comment.createdAt)) / 1000);
   const putTimeAgo = () => {
-    if (isNaN(timeAgo)) {
+    if (Number.isNaN(timeAgo)) {
       setTimestampValue((dayjs() - dayjs(comment.createdAt)));
       setTimestampName('seconds');
       return;
@@ -36,9 +35,8 @@ const Comment: React.FC<IComments> = ({ comment }) => {
     if (timeAgo >= 86400) {
       setTimestampValue(Math.round(timeAgo / 60 / 60 / 24));
       setTimestampName('days');
-      return;
     }
-  }
+  };
 
   useEffect(() => {
     putTimeAgo();
@@ -46,7 +44,7 @@ const Comment: React.FC<IComments> = ({ comment }) => {
 
   return (
     <CommentStyle>
-      <img src={'http://localhost:4000/uploads/' + comment.User.avatar} alt='avatar' />
+      <img src={`http://localhost:4000/uploads/${comment.User.avatar}`} alt='avatar' />
       <p className='comments__commentator'>{comment.User.fullName}</p>
       <p className='comments__date'>Left a comment {timestampValue} {timestampName} ago</p>
       <p className='comments__text'>
@@ -54,6 +52,6 @@ const Comment: React.FC<IComments> = ({ comment }) => {
       </p>
     </CommentStyle>
   );
-}
+};
 
 export default Comment;

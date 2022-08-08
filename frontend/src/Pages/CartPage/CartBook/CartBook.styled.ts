@@ -110,4 +110,4 @@ export const CartBookStyle = styled.div`
         background-color: #D6D8E7;
     }
 }
-`
+`;

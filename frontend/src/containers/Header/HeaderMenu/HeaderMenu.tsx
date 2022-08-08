@@ -1,6 +1,6 @@
-import { useAppSelector } from "../../../utils/hooks/useAppSelector";
-import Notification from "./Notification/Notification";
-import { HeaderMenuStyle } from "./HeaderMenu.styled";
+import { useAppSelector } from '../../../utils/hooks/useAppSelector';
+import Notification from './Notification/Notification';
+import { HeaderMenuStyle } from './HeaderMenu.styled';
 
 const HeaderMenu: React.FC = () => {
   const books = useAppSelector((state) => state.books);
@@ -8,15 +8,15 @@ const HeaderMenu: React.FC = () => {
 
   const toProfile = () => {
     window.location.href = '/profile';
-  }
+  };
 
   const toCart = () => {
     window.location.href = '/cart';
-  }
+  };
 
   const toLikedBooks = () => {
     window.location.href = '/liked-books?page=1';
-  }
+  };
 
   return (
     <HeaderMenuStyle isLoggedIn={user.tokenIsValid}>
@@ -25,10 +25,10 @@ const HeaderMenu: React.FC = () => {
         {books.cartBooksAmount}
       </div>
       <img src='./assets/image/like.svg' alt='like' onClick={toLikedBooks} />
-      <img className='header__menu-profileLink' src={'http://localhost:4000/uploads/' + user.avatar} alt='profileLink' onClick={toProfile} />
+      <img className='header__menu-profileLink' src={`http://localhost:4000/uploads/${user.avatar}`} alt='profileLink' onClick={toProfile} />
       <Notification />
     </HeaderMenuStyle>
   );
-}
+};
 
 export default HeaderMenu;

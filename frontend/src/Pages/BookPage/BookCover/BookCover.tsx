@@ -1,19 +1,16 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { AppDispatch } from "../../../store";
-import { changeLikeAction, getSelectedBookRequest } from "../../../store/reducers/bookReducer/thunks";
-import { toLikeBookRequest } from "../../../store/reducers/bookReducer/thunks";
-import { liked, notLiked } from "../../../utils/constants";
-import { useAppSelector } from "../../../utils/hooks/useAppSelector";
-import { BookCoverStyle } from "./BookCover.styled";
-
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { changeLikeAction, getSelectedBookRequest, toLikeBookRequest } from '../../../store/reducers/bookReducer/thunks';
+import { liked, notLiked } from '../../../utils/constants';
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch';
+import { useAppSelector } from '../../../utils/hooks/useAppSelector';
+import { BookCoverStyle } from './BookCover.styled';
 
 const BookCover: React.FC = () => {
   const books = useAppSelector((state) => state.books);
   const user = useAppSelector((state) => state.user);
   const [likeLink, setLikeLink] = useState(notLiked);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const params = useParams();
   const id = params.id;
 
@@ -21,13 +18,13 @@ const BookCover: React.FC = () => {
     const reqParams = {
       bookId: id?.slice(1),
       userId: user.id,
-    }
+    };
     await dispatch(getSelectedBookRequest(reqParams));
     if (books.selectedBook.UserLikedBooks[0] !== undefined) {
       dispatch(changeLikeAction(liked));
-      setLikeLink(liked)
+      setLikeLink(liked);
     }
-  }
+  };
 
   useEffect(() => {
     getSelectedBook();
@@ -38,7 +35,7 @@ const BookCover: React.FC = () => {
       userId: user.id,
       bookId: id?.slice(1),
       like: false,
-    }
+    };
 
     if (!user.tokenIsValid) {
       window.location.href = '/authorization';
@@ -54,19 +51,18 @@ const BookCover: React.FC = () => {
     }
 
     if (likeLink === liked && user.id !== 0) {
-      dispatch(toLikeBookRequest(body))
+      dispatch(toLikeBookRequest(body));
       dispatch(changeLikeAction(notLiked));
-      setLikeLink(notLiked)
-      return;
+      setLikeLink(notLiked);
     }
-  }
+  };
 
   return (
     <BookCoverStyle>
-      <img className='bookLike' src={'./assets/image/books/' + likeLink} alt='likeOnBook' onClick={toLikeBook} />
-      <img className='bookCover' src={'http://localhost:4000/images/books/' + books.selectedBook.cover} alt='book' />
+      <img className='bookLike' src={`http://localhost:4000/images/books/${likeLink}`} alt='likeOnBook' onClick={toLikeBook} />
+      <img className='bookCover' src={`http://localhost:4000/images/books/${books.selectedBook.cover}`} alt='book' />
     </BookCoverStyle>
   );
-}
+};
 
 export default BookCover;

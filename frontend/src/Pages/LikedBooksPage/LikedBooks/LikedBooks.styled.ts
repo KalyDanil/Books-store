@@ -51,7 +51,7 @@ export const BooksPagesControler = styled.div<{page:string}>`
         }
         
     }
-    #p${props => props.page} {
+    #p${(props) => props.page} {
         background-color: black;
     }
 `;

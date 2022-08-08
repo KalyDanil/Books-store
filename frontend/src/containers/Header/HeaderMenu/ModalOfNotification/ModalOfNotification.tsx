@@ -1,32 +1,34 @@
-import { ModalStyle } from "./ModalOfNotification.styled";
 import { useEffect } from 'react';
-import { ModalProps } from "../../../../utils/types";
+import { ModalStyle } from './ModalOfNotification.styled';
+import { ModalProps } from '../../../../utils/types/user';
 
 const ModalOfNotification = ({
-    visible = false, 
-    title = '',
-    content = '',
-    footer = '',
-    onClose,
-  }: ModalProps) => {
-    const onKeydown = ({ key }: KeyboardEvent) => {
-      switch (key) {
-        case 'Escape':
-          onClose()
-          break
-      }
+  visible = false,
+  title = '',
+  content = '',
+  footer = '',
+  onClose,
+}: ModalProps) => {
+  const onKeydown = ({ key }: KeyboardEvent) => {
+    switch (key) {
+      case 'Escape':
+        onClose();
+        break;
+      default:
+        break;
     }
-      useEffect(() => {
-          document.addEventListener('keydown', onKeydown)
-          return () => document.removeEventListener('keydown', onKeydown)
-      })
-  
-    if (!visible) return null
-  
-    return (
-      <ModalStyle>
+  };
+  useEffect(() => {
+    document.addEventListener('keydown', onKeydown);
+    return () => document.removeEventListener('keydown', onKeydown);
+  });
+
+  if (!visible) return null;
+
+  return (
+    <ModalStyle>
       <div className='modal' onClick={onClose}>
-        <div className='modal-dialog' onClick={e => e.stopPropagation()}>
+        <div className='modal-dialog' onClick={(e) => e.stopPropagation()}>
           <div className='modal-header'>
             <h3 className='modal-title'>{title}</h3>
           </div>
@@ -36,8 +38,8 @@ const ModalOfNotification = ({
           {footer && <div className='modal-footer'>{footer}</div>}
         </div>
       </div>
-      </ModalStyle>
-    )
-  }
+    </ModalStyle>
+  );
+};
 
-  export default ModalOfNotification;
+export default ModalOfNotification;

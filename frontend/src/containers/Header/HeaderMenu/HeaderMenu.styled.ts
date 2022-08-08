@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const HeaderMenuStyle = styled.div<{isLoggedIn: boolean}>`
     position: relative;
-    display: ${props => props.isLoggedIn? 'flex' : 'none'};
+    display: ${(props) => (props.isLoggedIn ? 'flex' : 'none')};
     justify-content: space-between;
     width: 200px;
     margin-left: 9.9%;
@@ -60,4 +60,4 @@ export const HeaderMenuStyle = styled.div<{isLoggedIn: boolean}>`
         top: 5px;
     }
 }
-`
+`;

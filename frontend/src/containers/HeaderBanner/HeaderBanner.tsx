@@ -1,5 +1,5 @@
-import { useAppSelector } from "../../utils/hooks/useAppSelector";
-import { HeaderBannerStyle } from "./HeaderBanner.styled";
+import { useAppSelector } from '../../utils/hooks/useAppSelector';
+import { HeaderBannerStyle } from './HeaderBanner.styled';
 
 const HeaderBanner: React.FC = () => {
   const user = useAppSelector((state) => state.user);
@@ -15,6 +15,6 @@ const HeaderBanner: React.FC = () => {
       <img className='girl' src='./assets/image/headerBackgroundGirl.svg' alt='BackgroundGirl'></img>
     </HeaderBannerStyle>
   );
-}
+};
 
 export default HeaderBanner;

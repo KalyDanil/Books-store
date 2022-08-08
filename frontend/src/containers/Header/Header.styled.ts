@@ -25,7 +25,7 @@ img {
 }
 
 .logOut {
-    display: ${props => props.isLoggedIn? '' : 'none'};
+    display: ${(props) => (props.isLoggedIn ? '' : 'none')};
     color: white;
     text-decoration: none;
     background-color: #344966;
@@ -55,7 +55,7 @@ img {
 
 .header__catalog {
     cursor: pointer;
-    margin-left: ${props => props.isLoggedIn? '7.8%' : '16.8%'};
+    margin-left: ${(props) => (props.isLoggedIn ? '7.8%' : '16.8%')};
     margin-top: 20px;
     font-weight: 500;
     font-size: 16px;
@@ -130,7 +130,7 @@ img {
 }
 
 .header__button {
-    display: ${props => props.isLoggedIn? 'none' : ''};
+    display: ${(props) => (props.isLoggedIn ? 'none' : '')};
     color: white;
     text-decoration: none;
     background-color: #344966;
@@ -160,10 +160,10 @@ img {
 }
 
 .logIn {
-    display: ${props => props.headerButton === 'LogIn'? '' : 'none'};
+    display: ${(props) => (props.headerButton === 'LogIn' ? '' : 'none')};
 }
 
 .singUp {
-    display: ${props => props.headerButton === 'SingUp'? '' : 'none'};
+    display: ${(props) => (props.headerButton === 'SingUp' ? '' : 'none')};
 }
 `;

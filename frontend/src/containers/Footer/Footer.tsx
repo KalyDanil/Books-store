@@ -20,6 +20,6 @@ const Footer: React.FC = () => {
       </div>
     </FooterStyled>
   );
-}
+};
 
 export default Footer;

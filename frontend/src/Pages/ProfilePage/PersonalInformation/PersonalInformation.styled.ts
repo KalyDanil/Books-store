@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PersonalInformationStyle = styled.div<{newPasswordIsMaking: boolean, informationIsEditing: boolean}>`
+export const DivStyle = styled.div<{newPasswordIsMaking: boolean, informationIsEditing: boolean}>`
     position: relative;
     width: 36.5%;
     margin-left: 35.6%;
@@ -74,7 +74,7 @@ export const PersonalInformationStyle = styled.div<{newPasswordIsMaking: boolean
 }
 
 .personalInformation__div {
-    display: ${props => props.informationIsEditing? 'none' : ''};
+    display: ${(props) => (props.informationIsEditing ? 'none' : '')};
     position: relative;
     span {
         position: absolute;
@@ -93,7 +93,7 @@ export const PersonalInformationStyle = styled.div<{newPasswordIsMaking: boolean
 }
 
 .personalInformationEditing__div {
-    display: ${props => props.informationIsEditing? '' : 'none'};
+    display: ${(props) => (props.informationIsEditing ? '' : 'none')};
     position: relative;
     span {
         position: absolute;
@@ -112,7 +112,7 @@ export const PersonalInformationStyle = styled.div<{newPasswordIsMaking: boolean
 }
 
 .personalInformation__button {
-    display: ${props => props.informationIsEditing? '' : 'none'};
+    display: ${(props) => (props.informationIsEditing ? '' : 'none')};
     width: 32.5%;
     height: 44px;
     background: #344966;
@@ -166,7 +166,7 @@ export const PersonalInformationStyle = styled.div<{newPasswordIsMaking: boolean
 }
 
 .personalInformation__oldPasswordStatic {
-    display: ${props => props.newPasswordIsMaking? 'none' : ''};
+    display: ${(props) => (props.newPasswordIsMaking ? 'none' : '')};
     position: relative;
     span {
         position: absolute;
@@ -185,7 +185,7 @@ export const PersonalInformationStyle = styled.div<{newPasswordIsMaking: boolean
 }
 
 .personalInformation__newPassword {
-    display: ${props => props.newPasswordIsMaking? '' : 'none'};
+    display: ${(props) => (props.newPasswordIsMaking ? '' : 'none')};
     position: relative;
     padding-top: 0px;
     width: 100%;
@@ -221,7 +221,7 @@ export const PersonalInformationStyle = styled.div<{newPasswordIsMaking: boolean
 }
 
 .personalInformation__oldPassword {
-    display: ${props => props.newPasswordIsMaking? '' : 'none'};
+    display: ${(props) => (props.newPasswordIsMaking ? '' : 'none')};
     position: relative;
     span {
         position: absolute;
@@ -240,7 +240,7 @@ export const PersonalInformationStyle = styled.div<{newPasswordIsMaking: boolean
 }
 
 .personalInformation__passwordButton {
-    display: ${props => props.newPasswordIsMaking? '' : 'none'};
+    display: ${(props) => (props.newPasswordIsMaking ? '' : 'none')};
     width: 32.5%;
     height: 44px;
     background: #344966;
@@ -255,4 +255,4 @@ export const PersonalInformationStyle = styled.div<{newPasswordIsMaking: boolean
         width: 58%;
     }
 }
-`
+`;

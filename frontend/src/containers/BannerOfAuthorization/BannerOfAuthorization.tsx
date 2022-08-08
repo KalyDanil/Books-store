@@ -6,7 +6,7 @@ const BannerOfAuthorization: React.FC = () => {
 
   const toAuthorization = () => {
     window.location.href = '/authorization';
-  }
+  };
 
   return (
     <Banner isLoggedIn={user.tokenIsValid}>
@@ -19,6 +19,6 @@ const BannerOfAuthorization: React.FC = () => {
       </div>
     </Banner>
   );
-}
+};
 
 export default BannerOfAuthorization;

@@ -1,7 +1,7 @@
-import { useAppSelector } from "../../../utils/hooks/useAppSelector";
-import HollowStarsToRating from "../../../components/HollowStarsToRating/HollowStarsToRating";
-import StarsToRating from "../../../components/StarsToRating/StarsToRating";
-import { BookStarsStyle } from "./BookStars.styled";
+import { useAppSelector } from '../../../utils/hooks/useAppSelector';
+import HollowStarsToRating from '../../../components/HollowStarsToRating/HollowStarsToRating';
+import StarsToRating from '../../../components/StarsToRating/StarsToRating';
+import { BookStarsStyle } from './BookStars.styled';
 
 const BookStars: React.FC = () => {
   const books = useAppSelector((state) => state.books);
@@ -11,11 +11,11 @@ const BookStars: React.FC = () => {
   const defaultHollowStarsArr = [];
 
   for (let i = 0; i < books.userRating; i++) {
-    starsArr.push([])
+    starsArr.push([]);
   }
 
   for (let i = 0; i < (books.maxRating - books.userRating); i++) {
-    hollowStarsArr.push([])
+    hollowStarsArr.push([]);
   }
 
   const stars = starsArr.map((item, index) => {
@@ -33,7 +33,7 @@ const BookStars: React.FC = () => {
   return (
     <BookStarsStyle isLoggedIn={user.tokenIsValid}>
       <div className='bookRating'>
-        <img src="./assets/image/books/star.svg" alt='star' />
+        <img src="http://localhost:4000/images/books/star.svg" alt='star' />
         <span>{books.selectedBook.rating}</span>
       </div>
       <div className='makingRatingDiv'>
@@ -51,6 +51,6 @@ const BookStars: React.FC = () => {
       </div>
     </BookStarsStyle>
   );
-}
+};
 
 export default BookStars;

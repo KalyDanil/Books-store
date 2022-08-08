@@ -1,56 +1,43 @@
-import '../../../App.css';
-import { useState } from 'react';
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../store/index';
 import { registrationRequest } from '../../../store/reducers/userReducer/thunks';
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch';
 import { RegistrationForm } from './Registration.styled';
 
 const Registration: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordReplay, setPasswordReplay] = useState('');
+  const dispatch = useAppDispatch();
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [passwordReplay, setPasswordReplay] = React.useState('');
 
   const registration = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const currentUser = {
-      email: email,
-      password: password
+      email,
+      password,
     };
 
     if (password !== passwordReplay) {
-      alert('Password must match password replay.')
+      alert('Password must match password replay.');
       setPasswordReplay('');
       setPassword('');
-      return
+      return;
     }
 
-    await dispatch(registrationRequest(currentUser));
-    
-    if (localStorage.getItem('token') !== 'err') {
-      setPasswordReplay('');
-      setEmail('');
-      setPassword('');
-      window.location.href = '/main?page=1';
-    } else { alert('Such emails are not exist or wrong password. Password must have at least one capital letter, one symbol from (- _ + = ! ? % / | @ # $ № . ,) or one number, and its length must be at least 6.') };
-
-    setPasswordReplay(''); 
-    setPassword('');
-  }
+    dispatch(registrationRequest(currentUser));
+  };
 
   const emailInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-  }
+  };
 
   const passwordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-  }
+  };
 
   const passwordReplayInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordReplay(e.target.value);
-  }
+  };
 
   return (
     <RegistrationForm onSubmit={registration}>
@@ -65,6 +52,6 @@ const Registration: React.FC = () => {
       <img className='authPicture' src='./assets/image/registrationPicture.svg' alt='auth picture' />
     </RegistrationForm>
   );
-}
+};
 
 export default Registration;

@@ -1,23 +1,21 @@
+import React, { useCallback, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Books } from './MainPage.styled';
-import { useCallback, useEffect } from 'react';
-import React from 'react';
 import Book from '../../../components/Book/Book';
 import BannerOfAuthorization from '../../../containers/BannerOfAuthorization/BannerOfAuthorization';
 import Pagination from '../../../containers/Pagination/Pagination';
-import { AppDispatch } from '../../../store/index';
-import { useDispatch } from 'react-redux';
 import { getBooksRequest, getPageAction } from '../../../store/reducers/bookReducer/thunks';
-import { useSearchParams } from "react-router-dom";
 import { useAppSelector } from '../../../utils/hooks/useAppSelector';
 import TopFilterBar from '../TopFilterBar/TopFilterBar';
 import HeaderBanner from '../../../containers/HeaderBanner/HeaderBanner';
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch';
 
 const MainPage: React.FC = () => {
   const user = useAppSelector((state) => state.user);
   const books = useAppSelector((state) => state.books);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = (books.books).map((item, index) => {
+  const page = (books.books).map((item) => {
     return (<Book book={item} key={item.id} />);
   });
 
@@ -31,7 +29,7 @@ const MainPage: React.FC = () => {
       page: searchParams.get('page'),
       limit: books.limit,
       userId: user.id,
-    }
+    };
     await dispatch(getBooksRequest(params));
   }, [books.limit, books.maxPrice, books.minPrice, dispatch, searchParams, user.id]);
 
@@ -52,6 +50,6 @@ const MainPage: React.FC = () => {
       <BannerOfAuthorization />
     </div>
   );
-}
+};
 
 export default MainPage;

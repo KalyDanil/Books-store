@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const RecommendationsStyle = styled.div<{booksLength: number}>`
     position: relative;
@@ -19,7 +19,7 @@ export const RecommendationsStyle = styled.div<{booksLength: number}>`
         position: relative;   
     }
     h1 {
-        display: ${props => props.booksLength === 0? 'none' : ''};
+        display: ${(props) => (props.booksLength === 0 ? 'none' : '')};
         position: absolute;
         top: 0;
         left: 10px;
@@ -30,4 +30,4 @@ export const RecommendationsStyle = styled.div<{booksLength: number}>`
             top: 50px;
         }
     }
-`
+`;

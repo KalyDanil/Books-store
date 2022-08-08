@@ -17,7 +17,7 @@ export const HeaderBannerStyle = styled.div<{isLoggedIn: boolean}>`
         width: 90%;
         height: 505px;
         margin-top: 105px;
-        margin-top: ${props => props.isLoggedIn? '105px' : '70px'};
+        margin-top: ${(props) => (props.isLoggedIn ? '105px' : '70px')};
     }
 
 .background {

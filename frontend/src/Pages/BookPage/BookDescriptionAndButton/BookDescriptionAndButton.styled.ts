@@ -86,4 +86,4 @@ export const BookDesctiptionAndButtonStyle = styled.div<{isLoggedIn: boolean}>`
     background: #B9BAC4;
     color: #F0F4EF;
 }
-`
+`;

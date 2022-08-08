@@ -13,7 +13,7 @@ export const PriceFilterStyle = styled.div<{selectedFilterButton: string}>`
     }
 
 .select-price__slider {
-    display: ${props => props.selectedFilterButton === 'price'? '' : 'none'};
+    display: ${(props) => (props.selectedFilterButton === 'price' ? '' : 'none')};
     position: relative;
     width: 413px;
     height: 151px;
@@ -119,7 +119,7 @@ export const PriceFilterStyle = styled.div<{selectedFilterButton: string}>`
 }
 
 .select-price__arrow {
-    transform: ${props => props.selectedFilterButton === 'price'? 'rotate(90deg)' : ''};
+    transform: ${(props) => (props.selectedFilterButton === 'price' ? 'rotate(90deg)' : '')};
     z-index: -1;
     position: absolute;
     width: 24px;

@@ -1,23 +1,22 @@
+import { useState, useEffect } from 'react';
 import { CartStyle } from './Cart.styled';
 import CartBook from '../CartBook/CartBook';
-import { getCartBooksRequest } from '../../../store/reducers/bookReducer/thunks';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../store/index';
-import { useState, useEffect } from 'react';
+import { getCartBooksRequest } from '../../../store/reducers/bookReducer/cartThunks';
 import { useAppSelector } from '../../../utils/hooks/useAppSelector';
 import EmptyCart from '../EmptyCart/EmptyCart';
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch';
 
 const Cart: React.FC = () => {
   const user = useAppSelector((state) => state.user);
   const books = useAppSelector((state) => state.books);
   const [isEmpty, setIsEmpty] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const getCartBooks = async () => {
       const params = {
-        userId: user.id
-      }
+        userId: user.id,
+      };
       await dispatch(getCartBooksRequest(params));
       if (books.cartBooks.length !== 0) {
         setIsEmpty(false);
@@ -25,7 +24,7 @@ const Cart: React.FC = () => {
       if (books.cartBooks.length === 0) {
         setIsEmpty(true);
       }
-    }
+    };
     getCartBooks();
   }, [books.cartBooks, dispatch, user.id]);
 
@@ -35,7 +34,7 @@ const Cart: React.FC = () => {
 
   const toMain = () => {
     window.location.href = '/main?page=1';
-  }
+  };
 
   return (
     <CartStyle cartIsEmpty={isEmpty}>
@@ -50,6 +49,6 @@ const Cart: React.FC = () => {
       <EmptyCart cartIsEmpty={isEmpty} />
     </CartStyle>
   );
-}
+};
 
 export default Cart;

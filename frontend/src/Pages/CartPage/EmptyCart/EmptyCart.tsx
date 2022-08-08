@@ -1,9 +1,9 @@
-import { EmptyCartStyle } from "./EmptyCart.styled";
+import { EmptyCartStyle } from './EmptyCart.styled';
 
 const EmptyCart: React.FC<{ cartIsEmpty: boolean }> = ({ cartIsEmpty }) => {
   const toMain = () => {
     window.location.href = '/main?page=1';
-  }
+  };
   return (
     <EmptyCartStyle cartIsEmpty={cartIsEmpty}>
       <img src='./assets/image/cartBackground.svg' alt='cartBackground' />
@@ -14,6 +14,6 @@ const EmptyCart: React.FC<{ cartIsEmpty: boolean }> = ({ cartIsEmpty }) => {
       </div>
     </EmptyCartStyle>
   );
-}
+};
 
 export default EmptyCart;

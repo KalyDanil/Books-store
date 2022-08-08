@@ -1,26 +1,25 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store";
-import { changeCartAmountAction, changeTotalPriceAction } from "../../../store/reducers/bookReducer/thunks";
-import { addBookToCartRequest } from "../../../store/reducers/bookReducer/thunks";
-import { useAppSelector } from "../../../utils/hooks/useAppSelector";
-import { BookDesctiptionAndButtonStyle } from "./BookDescriptionAndButton.styled";
+import { useState } from 'react';
+import { addBookToCartRequest } from '../../../store/reducers/bookReducer/cartThunks';
+import { changeCartAmountAction, changeTotalPriceAction } from '../../../store/reducers/bookReducer/thunks';
+import { useAppDispatch } from '../../../utils/hooks/useAppDispatch';
+import { useAppSelector } from '../../../utils/hooks/useAppSelector';
+import { BookDesctiptionAndButtonStyle } from './BookDescriptionAndButton.styled';
 
 const BookDesctiptionAndButton: React.FC = () => {
   const books = useAppSelector((state) => state.books);
   const user = useAppSelector((state) => state.user);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const [isFirstlyAdding, setIsFirstlyAdding] = useState(true);
 
   const addToCart = async (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     const body = {
       userId: user.id,
-      bookId: books.selectedBook.id
-    }
+      bookId: books.selectedBook.id,
+    };
     const button = (e.target as HTMLInputElement);
 
     if (button.classList.contains('notAvailable')) {
-      return
+      return;
     }
 
     if (user.tokenIsValid) {
@@ -41,11 +40,11 @@ const BookDesctiptionAndButton: React.FC = () => {
         }
       }
 
-      return
+      return;
     }
 
     window.location.href = '/authorization';
-  }
+  };
 
   return (
     <BookDesctiptionAndButtonStyle isLoggedIn={user.tokenIsValid}>
@@ -56,15 +55,15 @@ const BookDesctiptionAndButton: React.FC = () => {
       <div className='buyingButton'>
         <div>
           <span>Paperback</span>
-          <input className={books.selectedBook.status} type='button' value={'$ ' + books.selectedBook.price + ' USD'} onClick={addToCart} />
+          <input className={books.selectedBook.status} type='button' value={`$ ${books.selectedBook.price} USD`} onClick={addToCart} />
         </div>
         <div>
           <span>Hardcover</span>
-          <input className={books.selectedBook.status} type='button' value={'$ ' + books.selectedBook.price + ' USD'} onClick={addToCart} />
+          <input className={books.selectedBook.status} type='button' value={`$ ${books.selectedBook.price} USD`} onClick={addToCart} />
         </div>
       </div>
     </BookDesctiptionAndButtonStyle>
   );
-}
+};
 
 export default BookDesctiptionAndButton;
